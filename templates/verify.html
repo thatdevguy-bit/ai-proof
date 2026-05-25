@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification — AI Proof</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #2e1065 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3), 0 8px 10px -6px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar with Action Buttons -->
+    <nav class="bg-black/30 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">AI</span>
+                    </div>
+                    <span class="text-xl font-bold text-white">AI<span class="text-blue-400">Proof</span></span>
+                </div>
+                <div class="flex space-x-3">
+                    <button onclick="copyToClipboard()" 
+                            class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path>
+                        </svg>
+                        Copy Link
+                    </button>
+                    <a href="https://explorer.sui.io/object/{{ blob_id }}" target="_blank" 
+                       class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg hover:shadow-lg transition flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                        Sui Explorer
+                    </a>
+                    <a href="/" 
+                       class="border border-gray-600 text-gray-300 hover:bg-white/10 px-4 py-2 rounded-lg transition flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Success Badge -->
+        <div class="text-center mb-8 animate-fade-in">
+            <div class="inline-flex items-center bg-green-500/20 border border-green-500/30 rounded-full px-4 py-2">
+                <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-green-400">Verified on Sui Blockchain</span>
+            </div>
+        </div>
+
+        <!-- Main Verification Card -->
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden card-hover glow animate-slide-up">
+            
+            <!-- Header Gradient -->
+            <div class="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-6">
+                <h1 class="text-2xl font-bold text-white">Verification Report</h1>
+                <p class="text-white/80 mt-1">Dataset Provenance & Integrity</p>
+            </div>
+            
+            <!-- Content -->
+            <div class="p-8">
+                
+                <!-- Status Summary -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                    <div class="text-center p-4 bg-green-500/10 rounded-xl border border-green-500/20">
+                        <div class="text-green-400 font-semibold text-sm">Storage Status</div>
+                        <div class="text-2xl font-bold text-green-400">✓ CERTIFIED</div>
+                        <div class="text-xs text-gray-400 mt-1">Stored on Walrus</div>
+                    </div>
+                    <div class="text-center p-4 bg-blue-500/10 rounded-xl border border-blue-500/20">
+                        <div class="text-blue-400 font-semibold text-sm">Blockchain</div>
+                        <div class="text-2xl font-bold text-blue-400">Sui Mainnet</div>
+                        <div class="text-xs text-gray-400 mt-1">Immutable timestamp</div>
+                    </div>
+                    <div class="text-center p-4 bg-purple-500/10 rounded-xl border border-purple-500/20">
+                        <div class="text-purple-400 font-semibold text-sm">Integrity</div>
+                        <div class="text-2xl font-bold text-purple-400">✓ INTACT</div>
+                        <div class="text-xs text-gray-400 mt-1">Content hash verified</div>
+                    </div>
+                </div>
+                
+                <!-- Dataset Information -->
+                <div class="mb-8">
+                    <h2 class="text-lg font-bold text-white border-b border-white/10 pb-2 mb-4">Dataset Information</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-sm text-gray-400">Dataset Name</p>
+                            <p class="font-medium text-white">{{ metadata.name if metadata else 'N/A' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">License</p>
+                            <p class="font-medium text-white">{{ metadata.license if metadata else 'N/A' }}</p>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-400">Description</p>
+                        <p class="text-gray-300">{{ metadata.description if metadata else 'No description provided' }}</p>
+                    </div>
+                </div>
+                
+                <!-- Blockchain Proof -->
+                <div class="mb-8">
+                    <h2 class="text-lg font-bold text-white border-b border-white/10 pb-2 mb-4">Blockchain Proof</h2>
+                    <div class="bg-black/30 rounded-lg p-4 font-mono text-sm break-all border border-white/5">
+                        <p><span class="text-gray-400">Dataset ID:</span> <span class="text-blue-400">{{ dataset_id }}</span></p>
+                        <p class="mt-2"><span class="text-gray-400">File Blob ID:</span> <span class="text-cyan-400">{{ blob_id }}</span></p>
+                        <p class="mt-2"><span class="text-gray-400">Metadata Blob ID:</span> <span class="text-cyan-400">{{ metadata_blob_id }}</span></p>
+                        <p class="mt-2"><span class="text-gray-400">Verification Hash:</span> <span class="text-purple-400">{{ verification_hash if verification_hash else '—' }}</span></p>
+                    </div>
+                </div>
+                
+                <!-- What This Means -->
+                <div class="mt-8 text-center text-gray-400 text-sm">
+                    <p>This dataset has been permanently stored on the Sui blockchain via Walrus decentralized storage.</p>
+                    <p class="mt-1">The content hash and timestamp provide cryptographic proof of existence and integrity.</p>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black/50 border-t border-white/10 mt-12 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+            <p>Built with 🐍 Flask + Walrus Decentralized Storage + Sui Blockchain</p>
+            <p class="mt-2">© 2026 AI Proof — Verifiable AI Training Data</p>
+        </div>
+    </footer>
+
+    <script>
+        function copyToClipboard() {
+            navigator.clipboard.writeText(window.location.href);
+            alert('Verification link copied to clipboard!');
+        }
+    </script>
+
+</body>
+</html>
+

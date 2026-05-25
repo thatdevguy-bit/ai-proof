@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Proof — Verifiable AI Training Data on Sui</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'sans': ['Inter', 'system-ui', 'sans-serif'] },
+                    animation: { 'fade-in': 'fadeIn 0.5s ease-in-out', 'slide-up': 'slideUp 0.3s ease-out' },
+                    keyframes: {
+                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+                        slideUp: { '0%': { transform: 'translateY(20px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } }
+                    }
+                }
+            }
+        }
+    </script>
+
+
+    <style>
+        body { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #2e1065 100%); }
+        .gradient-text { background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3), 0 8px 10px -6px rgba(0,0,0,0.2); }
+        .glow { box-shadow: 0 0 30px rgba(96, 165, 250, 0.3); }
+
+        /* Hide elements initially */
+        #how-it-works, #upload, #gallery, .cta-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        /* Show when visible class is added */
+        #how-it-works.visible, #upload.visible, #gallery.visible, .cta-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stagger children inside sections (cards appear one by one) */
+        .grid .card-hover {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+        }
+
+        .visible .grid .card-hover:nth-child(1) { transition-delay: 0.1s; }
+        .visible .grid .card-hover:nth-child(2) { transition-delay: 0.2s; }
+        .visible .grid .card-hover:nth-child(3) { transition-delay: 0.3s; }
+
+        .visible .grid .card-hover {
+            opacity: 1;
+            transform: translateY(0);
+        }        
+    </style>
+</head>
+
+
+<body class="font-sans">
+
+    <!-- ============================================ -->
+    <!-- HERO SECTION - What is this? -->
+    <!-- ============================================ -->
+    <div class="relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-600 rounded-full blur-[120px] opacity-20"></div>
+        
+        <nav class="relative z-10 bg-black/30 backdrop-blur-md border-b border-white/10 sticky top-0">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center py-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">AI</span>
+                        </div>
+                        <span class="text-xl font-bold text-white">AI<span class="text-blue-400">Proof</span></span>
+                    </div>
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#how-it-works" class="text-gray-300 hover:text-white transition">How It Works</a>
+                        <a href="#gallery" class="text-gray-300 hover:text-white transition">Verified Datasets</a>
+                        <a href="#verify" class="text-gray-300 hover:text-white transition">Verify</a>
+                        <a href="/about" class="text-gray-300 hover:text-white transition">About</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+            <div class="animate-fade-in">
+                <div class="inline-flex items-center bg-blue-500/10 border border-blue-500/30 rounded-full px-4 py-1.5 mb-6">
+                    <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                    <span class="text-sm text-blue-300">Powered by Sui Blockchain & Walrus Storage</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
+                    Prove Your AI Training Data<br>
+                    <span class="gradient-text">Existed. Forever.</span>
+                </h1>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+                    Permanently store dataset proofs on the Sui blockchain. Immutable timestamps. Cryptographic verification. No one can delete or alter your proof.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#upload" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-xl transition-all duration-200">
+                        Register Dataset →
+                    </a>
+                    <a href="#gallery" class="border border-gray-600 text-gray-300 px-8 py-3 rounded-xl font-semibold hover:bg-white/10 transition">
+                        View Verified Datasets
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- HOW IT WORKS - 3 Steps -->
+    <!-- ============================================ -->
+    <div id="how-it-works" class="bg-black/30 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">How It Works</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Three simple steps to permanent, verifiable proof of your data's existence.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6 rounded-2xl bg-white/5 backdrop-blur-sm card-hover">
+                    <div class="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl font-bold text-blue-400">1</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Upload Dataset</h3>
+                    <p class="text-gray-400">Upload your dataset file with metadata (name, source, license, description).</p>
+                </div>
+                <div class="text-center p-6 rounded-2xl bg-white/5 backdrop-blur-sm card-hover">
+                    <div class="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl font-bold text-purple-400">2</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Store on Walrus + Sui</h3>
+                    <p class="text-gray-400">Your data is permanently stored on Walrus with an immutable Sui blockchain timestamp.</p>
+                </div>
+                <div class="text-center p-6 rounded-2xl bg-white/5 backdrop-blur-sm card-hover">
+                    <div class="w-16 h-16 bg-pink-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl font-bold text-pink-400">3</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Get Verification Proof</h3>
+                    <p class="text-gray-400">Receive a permanent verification page with blockchain timestamp and content hash.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- UPLOAD SECTION - The Action -->
+    <!-- ============================================ -->
+    <div id="upload" class="py-20">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 glow">
+                <h2 class="text-2xl font-bold text-white mb-2 text-center">Register New Dataset</h2>
+                <p class="text-gray-400 text-center mb-8">Upload your dataset to get a permanent blockchain verification proof.</p>
+                
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                
+                <!-- Row 1: Name + Email -->
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-gray-300 mb-2">Dataset Name *</label>
+                        <input type="text" name="name" required 
+                            class="w-full bg-white/10 border border-gray-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-gray-300 mb-2">Your Email *</label>
+                        <input type="email" name="email" required 
+                            class="w-full bg-white/10 border border-gray-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500">
+                    </div>
+                </div>
+                
+                <!-- Row 2: Source + Empty space (to keep 2 columns) -->
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-gray-300 mb-2">Source</label>
+                        <input type="text" name="source" 
+                            class="w-full bg-white/10 border border-gray-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div>
+                        <!-- Empty div to maintain grid layout -->
+                    </div>
+                </div>
+                
+                <!-- Row 3: Description (full width) -->
+                <div class="mb-6">
+                    <label class="block text-gray-300 mb-2">Description</label>
+                    <textarea name="description" rows="3" 
+                            class="w-full bg-white/10 border border-gray-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500"></textarea>
+                </div>
+                
+                <!-- Row 4: License + File -->
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-gray-300 mb-2">License</label>
+                        <select name="license" 
+                                class="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500">
+                            <option value="MIT">MIT</option>
+                            <option value="Apache 2.0">Apache 2.0</option>
+                            <option value="CC0 (Public Domain)">CC0 (Public Domain)</option>
+                            <option value="CC BY 4.0">CC BY 4.0</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-300 mb-2">Dataset File *</label>
+                        <input type="file" name="file" required 
+                            class="w-full text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-blue-500 file:text-white hover:file:bg-blue-600">
+                    </div>
+                </div>
+                
+                <!-- Submit Button -->
+                <button type="submit" 
+                        class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-3 rounded-xl hover:shadow-lg transition-all duration-200">
+                    Upload & Verify →
+                </button>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- GALLERY SECTION - With better card spacing -->
+    <!-- ============================================ -->
+    <div id="gallery" class="bg-black/30 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Recently Verified Datasets</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">See examples of datasets already verified on the Sui blockchain.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white/5 rounded-xl p-6 border border-white/10 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xs text-gray-500 px-2 py-1 bg-white/5 rounded-full">Verified</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-1">ImageNet Sample</h3>
+                    <p class="text-sm text-gray-400 mb-3">10,000 labeled images</p>
+                    <p class="text-xs text-gray-500 mb-2">CC0 License</p>
+                    <p class="text-xs text-gray-500 font-mono">Blob: VQ8f_xxx...</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="bg-white/5 rounded-xl p-6 border border-white/10 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xs text-gray-500 px-2 py-1 bg-white/5 rounded-full">Verified</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-1">Medical Imaging Dataset</h3>
+                    <p class="text-sm text-gray-400 mb-3">5,000 X-rays</p>
+                    <p class="text-xs text-gray-500 mb-2">MIT License</p>
+                    <p class="text-xs text-gray-500 font-mono">Blob: KsZF_xxx...</p>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="bg-white/5 rounded-xl p-6 border border-white/10 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xs text-gray-500 px-2 py-1 bg-white/5 rounded-full">Verified</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-1">Text Corpus 2024</h3>
+                    <p class="text-sm text-gray-400 mb-3">50M tokens</p>
+                    <p class="text-xs text-gray-500 mb-2">CC BY 4.0</p>
+                    <p class="text-xs text-gray-500 font-mono">Blob: r1XX_xxx...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- STATS SECTION - With proper spacing -->
+    <!-- ============================================ -->
+    <div class="bg-black/30 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16">
+                <div class="text-center min-w-[140px]">
+                    <div class="text-4xl md:text-5xl font-bold text-white stat-number mb-2" data-target="157">0</div>
+                    <div class="text-sm text-gray-400">Datasets Verified</div>
+                </div>
+                <div class="text-center min-w-[140px]">
+                    <div class="text-4xl md:text-5xl font-bold text-white stat-number mb-2" data-target="24">0</div>
+                    <div class="text-sm text-gray-400">Active Researchers</div>
+                </div>
+                <div class="text-center min-w-[140px]">
+                    <div class="text-4xl md:text-5xl font-bold text-white stat-number mb-2" data-target="100">0</div>
+                    <div class="text-sm text-gray-400">Proofs Stored</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- CTA SECTION - Final Push -->
+    <!-- ============================================ -->
+    <div class="py-20 text-center">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-white mb-4">Ready to Prove Your Data?</h2>
+            <p class="text-gray-400 mb-8">Join researchers and AI companies verifying their training data on Sui.</p>
+            <a href="#upload" class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-xl transition-all duration-200">
+                Register Your Dataset Now
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black/50 border-t border-white/10 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>Built with 🐍 Flask + Walrus Decentralized Storage + Sui Blockchain</p>
+            <p class="mt-2">© 2026 AI Proof — Verifiable AI Training Data</p>
+        </div>
+    </footer>
+
+<script>
+    // ============================================
+    // SCROLL ANIMATIONS FOR AI PROOF
+    // ============================================
+    
+    // Wait for page to load
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // Select all sections to animate
+        const sections = [
+            document.querySelector('#how-it-works'),
+            document.querySelector('#upload'),
+            document.querySelector('#gallery')
+        ];
+        
+        // Add cta section if it exists (the one with "Ready to Prove Your Data?")
+        const ctaSection = document.querySelector('.py-20.text-center');
+        if (ctaSection) sections.push(ctaSection);
+        
+        // Create intersection observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Add visible class to section
+                    entry.target.classList.add('visible');
+                    
+                    // Animate cards inside this section with delay
+                    const cards = entry.target.querySelectorAll('.card-hover');
+                    cards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, index * 150);
+                    });
+                    
+                    // Stop observing after animation
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.2,           // Trigger when 20% visible
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        // Observe each section
+        sections.forEach(section => {
+            if (section) observer.observe(section);
+        });
+        
+        // ============================================
+        // NUMBER COUNTER ANIMATION
+        // ============================================
+        
+// Update the counter animation part
+    const counters = document.querySelectorAll('.stat-number');
+
+    counters.forEach(counter => {
+        const updateCount = () => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            const current = parseInt(counter.innerText);
+            const increment = Math.ceil(target / 50);
+            
+            if (current < target) {
+                const next = Math.min(current + increment, target);
+                counter.innerText = next;
+                setTimeout(updateCount, 30);
+            } else {
+                // Add + after counting finishes
+                counter.innerHTML = target + '<span class="text-blue-400">+</span>';
+            }
+        };
+        
+        // Start counter when element is in view
+        const counterObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                updateCount();
+                counterObserver.unobserve(entries[0].target);
+            }
+        }, { threshold: 0.5 });
+        
+        counterObserver.observe(counter);
+    });
+        
+        // ============================================
+        // SMOOTH SCROLL FOR NAVIGATION LINKS
+        // ============================================
+        
+        const navLinks = document.querySelectorAll('a[href^="#"]');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+    });
+</script>
+
+</body>
+</html>
+

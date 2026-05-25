@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — AI Proof</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #2e1065 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3), 0 8px 10px -6px rgba(0,0,0,0.2);
+        }
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] .chevron {
+            transform: rotate(180deg);
+        }
+        .chevron {
+            transition: transform 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="bg-black/30 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">AI</span>
+                    </div>
+                    <span class="text-xl font-bold text-white">AI<span class="text-blue-400">Proof</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="/" class="text-gray-300 hover:text-white transition">Home</a>
+                    <a href="/#gallery" class="text-gray-300 hover:text-white transition">Gallery</a>
+                    <a href="/about" class="text-white border-b border-blue-400 pb-1">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+        <div class="animate-fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                About <span class="gradient-text">AI Proof</span>
+            </h1>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                Verifiable AI training data. Permanent. Immutable. Trustless.
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- The Problem -->
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 mb-8 animate-slide-up">
+            <h2 class="text-2xl font-bold text-white mb-4">The Problem</h2>
+            <p class="text-gray-300 leading-relaxed">
+                AI companies are being sued for training on copyrighted data. 
+                Researchers can't prove when their datasets existed. 
+                Regulators can't verify training data provenance.
+            </p>
+            <div class="mt-4 p-4 bg-red-500/10 rounded-xl border border-red-500/20">
+                <p class="text-red-300 text-sm">⚠️ The crisis: No one can prove what data trained an AI model.</p>
+            </div>
+        </div>
+
+        <!-- The Solution -->
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 mb-8 animate-slide-up" style="animation-delay: 0.1s">
+            <h2 class="text-2xl font-bold text-white mb-4">The Solution</h2>
+            <p class="text-gray-300 leading-relaxed">
+                AI Proof permanently stores dataset proofs on the Sui blockchain via Walrus decentralized storage. 
+                Anyone can verify when a dataset existed and what it contained — no trusted third party required.
+            </p>
+            <div class="mt-4 p-4 bg-green-500/10 rounded-xl border border-green-500/20">
+                <p class="text-green-300 text-sm">✅ Cryptographically verified. Immutable. Permanent.</p>
+            </div>
+        </div>
+
+        <!-- How It Works (Detailed) -->
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 mb-8 animate-slide-up" style="animation-delay: 0.2s">
+            <h2 class="text-2xl font-bold text-white mb-4">How It Works</h2>
+            <div class="space-y-6">
+                <div class="flex gap-4">
+                    <div class="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span class="text-blue-400 font-bold">1</span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-white">Upload Dataset</h3>
+                        <p class="text-gray-400">You upload your dataset file with metadata (name, description, source, license).</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span class="text-purple-400 font-bold">2</span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-white">Store on Walrus + Sui</h3>
+                        <p class="text-gray-400">Your data is permanently stored on Walrus with an immutable Sui blockchain timestamp.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-8 h-8 bg-pink-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span class="text-pink-400 font-bold">3</span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-white">Get Verification Proof</h3>
+                        <p class="text-gray-400">Receive a permanent verification page with blockchain timestamp and content hash.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technology Stack -->
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 mb-8 animate-slide-up" style="animation-delay: 0.3s">
+            <h2 class="text-2xl font-bold text-white mb-4">Technology Stack</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="text-center p-3 bg-white/5 rounded-xl">
+                    <div class="text-blue-400 font-semibold">Flask</div>
+                    <div class="text-xs text-gray-500">Backend</div>
+                </div>
+                <div class="text-center p-3 bg-white/5 rounded-xl">
+                    <div class="text-purple-400 font-semibold">Walrus</div>
+                    <div class="text-xs text-gray-500">Decentralized Storage</div>
+                </div>
+                <div class="text-center p-3 bg-white/5 rounded-xl">
+                    <div class="text-pink-400 font-semibold">Sui</div>
+                    <div class="text-xs text-gray-500">Blockchain</div>
+                </div>
+                <div class="text-center p-3 bg-white/5 rounded-xl">
+                    <div class="text-green-400 font-semibold">Tatum</div>
+                    <div class="text-xs text-gray-500">Sui RPC API</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 mb-8 animate-slide-up" style="animation-delay: 0.4s">
+            <h2 class="text-2xl font-bold text-white mb-6">Frequently Asked Questions</h2>
+            
+            <div class="space-y-3">
+                <!-- FAQ 1 -->
+                <details class="border-b border-white/10 pb-3">
+                    <summary class="flex justify-between items-center cursor-pointer py-3 text-white font-medium">
+                        What is Walrus?
+                        <svg class="chevron w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </summary>
+                    <p class="text-gray-400 pb-3">Walrus is a decentralized storage protocol built on the Sui blockchain. Your data is stored permanently across multiple nodes — no single company controls your files.</p>
+                </details>
+
+                <!-- FAQ 2 -->
+                <details class="border-b border-white/10 pb-3">
+                    <summary class="flex justify-between items-center cursor-pointer py-3 text-white font-medium">
+                        Why do I need to prove my dataset existed?
+                        <svg class="chevron w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </summary>
+                    <p class="text-gray-400 pb-3">AI companies are being sued for training on copyrighted data. Proving when your dataset existed helps establish prior art, ownership, and regulatory compliance.</p>
+                </details>
+
+                <!-- FAQ 3 -->
+                <details class="border-b border-white/10 pb-3">
+                    <summary class="flex justify-between items-center cursor-pointer py-3 text-white font-medium">
+                        Is this free?
+                        <svg class="chevron w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </summary>
+                    <p class="text-gray-400 pb-3">Yes. This is a hackathon project demonstrating Walrus + Tatum integration. Upload and verification are completely free.</p>
+                </details>
+
+                <!-- FAQ 4 -->
+                <details class="border-b border-white/10 pb-3">
+                    <summary class="flex justify-between items-center cursor-pointer py-3 text-white font-medium">
+                        Can I delete my dataset?
+                        <svg class="chevron w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </summary>
+                    <p class="text-gray-400 pb-3">No. Once data is stored on Walrus, it's permanent. That's the point — immutable proof that cannot be altered or deleted.</p>
+                </details>
+
+                <!-- FAQ 5 -->
+                <details class="border-b border-white/10 pb-3">
+                    <summary class="flex justify-between items-center cursor-pointer py-3 text-white font-medium">
+                        What file types are supported?
+                        <svg class="chevron w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </summary>
+                    <p class="text-gray-400 pb-3">Any file type — text, CSV, JSON, images, PDFs. Walrus stores raw blobs of data up to 50 MiB.</p>
+                </details>
+            </div>
+        </div>
+
+        <!-- Built By -->
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 mb-8 animate-slide-up" style="animation-delay: 0.5s">
+            <h2 class="text-2xl font-bold text-white mb-4">Built For</h2>
+            <p class="text-gray-300 leading-relaxed">
+                Built for the <span class="text-blue-400">Tatum x Build on Sui with Walrus Hackathon</span> — June 2026.
+            </p>
+            <p class="text-gray-400 mt-2 text-sm">
+                Submitted by: <span class="text-white">David Olamide</span>
+            </p>
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center py-8">
+            <a href="/#upload" 
+               class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-xl transition-all duration-200">
+                Verify Your Dataset Now →
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black/50 border-t border-white/10 mt-12 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+            <p>Built with 🐍 Flask + Walrus Decentralized Storage + Sui Blockchain</p>
+            <p class="mt-2">© 2026 AI Proof — Verifiable AI Training Data</p>
+        </div>
+    </footer>
+
+</body>
+</html>
